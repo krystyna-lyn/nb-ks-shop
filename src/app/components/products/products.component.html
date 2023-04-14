@@ -1,0 +1,43 @@
+
+<div class="container-edit" >
+  <mat-toolbar *ngIf="canEdit" class="header">
+    <mat-toolbar-row>
+      <span class="example-spacer"></span>
+      <button mat-flat-button class="btn btns" (click)="openDialog()">Add</button>  
+    </mat-toolbar-row>    
+  </mat-toolbar>
+</div>
+
+<section class="container section-3">
+
+    <mat-card class="example-card" *ngFor="let product of products">
+
+        <mat-card-title>{{product.title}}</mat-card-title>
+
+        <div class="product product-1">
+
+          <img mat-card-image class="product-img" src="{{product.image}}"/>
+          <span class="product_add_cart" (click)="addToBasket(product)">ADD TO CART</span>
+          <!-- <mat-card-content>
+            <p class="price">{{product.price | currency: "EUR"}}</p>
+            <p>{{product.year}}</p>
+          </mat-card-content>-->
+        </div>
+
+        <mat-card-actions>
+         <div class="product_btns">
+            <button class="btn product_btn" mat-flat-button color="dark" [routerLink]="['/product', product.id]">Details</button>
+            <button mat-button [matMenuTriggerFor]="menu" class="btn-edit" mat-flat-button color="dark">Edit</button>
+          </div>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="openDialog(product)">Edit</button>
+            <button mat-menu-item (click)="deleteItem(product.id)">Delete</button>
+          </mat-menu>
+        </mat-card-actions>
+        
+      </mat-card>   
+
+</section>
+
+
+ 
